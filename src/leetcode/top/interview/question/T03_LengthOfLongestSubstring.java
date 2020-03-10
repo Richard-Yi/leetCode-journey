@@ -43,21 +43,20 @@ public class T03_LengthOfLongestSubstring {
     // 维护一个滑动窗口，窗口内的都是没有重复的字符，去尽可能的扩大窗口的大小，窗口不停的向右滑动。
 
     public int lengthOfLongestSubstring_real(String s) {
+        // 滑动窗口
         HashMap<Character, Integer> uniques = new HashMap<>(s.length());
 
         int length = 0;
         // 滑动窗口的左下标
-        int i = 0;
+        int left = 0;
         // j - 滑动窗口的右下标
         for (int j = 0; j < s.length(); j++) {
             if (uniques.containsKey(s.charAt(j))) {
-                // 存在
-                i = uniques.get(s.charAt(j)) + 1;
-            } else {
-                // 不存在
-                uniques.put(s.charAt(j), j);
-                length = j - i + 1;
+                // 这里必须要有个MAX，不然的话窗口的left 可能会出现往左移的情况
+                left = Math.max(left, uniques.get(s.charAt(j)) + 1);
             }
+            uniques.put(s.charAt(j), j);
+            length = Math.max(length, j - left + 1);
         }
 
         return length;
