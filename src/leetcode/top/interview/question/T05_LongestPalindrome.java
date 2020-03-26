@@ -64,6 +64,10 @@ public class T05_LongestPalindrome {
 
     // 一个遍历的指针，再以指针为中心两边扩散
 
+    // 遍历每一个索引，以这个索引为中心，利用“回文串”中心对称的特点，往两边扩散，看最多能扩散多远
+
+    // 奇数 回文串和 偶数 回文串的区别
+
     public String longestPalindrome2(String s) {
         int len = s.length();
 
@@ -71,23 +75,38 @@ public class T05_LongestPalindrome {
             return s;
         }
 
-        int maxLen = 2;
-        int left, right;
-        String ans = "";
+        String ans = s.substring(0, 1);
 
-        for (int i = 1; i < len; i++) {
-            left = i;
-            right = i;
+        for (int i = 0; i < len - 1; i++) {
 
-            while (left > 0 && right + left <= 2 * i) {
-                left--;
-                if (s.charAt(left) == s.charAt(right)) {
+            // 把奇数和偶数回文串分开考虑
+            String oddStr = centerSpread(s, i, i);
+            String evenStr = centerSpread(s, i, i + 1);
 
-                } else {
+            String longest = oddStr.length() > evenStr.length() ? oddStr : evenStr;
 
-                }
+            if (longest.length() > ans.length()) {
+                ans = longest;
             }
         }
 
+        return ans;
+    }
+
+    private String centerSpread(String s, int i, int j) {
+
+        int left = i;
+        int right = j;
+
+        while (left >= 0 && right < s.length()) {
+            if (s.charAt(left) == s.charAt(right)) {
+                left--;
+                right++;
+            } else {
+                break;
+            }
+        }
+
+        return s.substring(left + 1, right);
     }
 }
