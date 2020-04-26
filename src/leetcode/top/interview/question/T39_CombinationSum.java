@@ -16,6 +16,13 @@ public class T39_CombinationSum {
 
     // 注意：这是一组不含重复元素的整数数组 nums
 
+    // 39.组合总和
+    // 40. 组合总和 II
+    // 46. 全排列
+    // 47. 全排列 II
+    // 78. 子集
+    // 90. 子集 II
+
     public static void main(String[] args) {
         int[] candidates = {2, 3, 5};
         int target = 8;
