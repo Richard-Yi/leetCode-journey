@@ -25,6 +25,11 @@ public class T17_LetterCombination {
     }
 
     public static List<String> letterCombinations(String digits) {
+        List<String> result = new ArrayList<>();
+
+        if ("".equals(digits)) {
+            return result;
+        }
 
         Map<Character, char[]> telMap = new HashMap<>(8);
         telMap.put('2', new char[]{'a', 'b', 'c'});
@@ -36,7 +41,6 @@ public class T17_LetterCombination {
         telMap.put('8', new char[]{'t', 'u', 'v'});
         telMap.put('9', new char[]{'w', 'x', 'y', 'z'});
 
-        List<String> result = new ArrayList<>();
         backTrack(new StringBuilder(""), telMap, 0, digits, result);
         return result;
     }
