@@ -18,6 +18,33 @@ package leetcode.top.interview.question;
  */
 public class T02_AddTwoNumbers {
 
+    // 复习版本
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        // 进位
+        int carry = 0;
+        ListNode head = new ListNode(-1);
+        ListNode currentNode = head;
+        // 这里是 或"||" 的关系！
+        while (l1 != null || l2 != null) {
+            int s1 = l1 == null ? 0 : l1.val;
+            int s2 = l2 == null ? 0 : l2.val;
+
+            int cur = s1 + s2 + carry;
+            carry = cur / 10;
+            cur = cur % 10;
+            currentNode.next = new ListNode(cur);
+            currentNode = currentNode.next;
+            l1 = l1 == null ? null : l1.next;
+            l2 = l2 == null ? null : l2.next;
+        }
+        // 记得还要判断最高位相加还要再进一位的情况，即carry = 1
+        if (carry > 0) {
+            currentNode.next = new ListNode(carry);
+        }
+        return head.next;
+    }
+
+
     // 非空、链表
     // 链表用来表示两个非负的整数
     // 位数按照逆序存储，每个node上只有一位数字
