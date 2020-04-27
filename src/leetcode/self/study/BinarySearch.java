@@ -12,9 +12,10 @@ public class BinarySearch {
 
         int[] nums2 = {1, 2, 2, 2, 4};
         System.out.println(binarySearchLeftBoundary(nums2, 2));
+        System.out.println(binarySearchLeftBoundaryUnitedVersion(nums2, 2));
 
         System.out.println(binarySearchRightBoundary(nums2, 2));
-
+        System.out.println(binarySearchRightBoundaryUnitedVersion(nums2, 2));
     }
 
     // 二分查找要点：明确「搜索区间」这个概念
@@ -140,5 +141,69 @@ public class BinarySearch {
         }
         // 这里有一个关键，就是理解right-1
         return nums[right - 1] == target ? (right-1) : -1;
+    }
+
+    /**
+     * 二分查找 左边界
+     * 如 nums = [1,2,2,2,3] target = 2
+     * 返回左边界下标 1
+     *
+     * @param nums   如 nums = [1,2,2,2,3]
+     * @param target target
+     * @return 返回左边界下标
+     */
+    static int binarySearchLeftBoundaryUnitedVersion(int[] nums, int target) {
+        if (nums.length == 0) {
+            return -1;
+        }
+        int left = 0;
+        int right = nums.length - 1;
+
+        // [left, right] -> [left, mid - 1], [mid + 1, right]
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] == target) {
+                right = mid - 1;
+            } else if (nums[mid] > target){
+                // [left, mid - 1]
+                right = mid - 1;
+            } else if (nums[mid] < target){
+                left = mid + 1;
+            }
+        }
+
+        if (left >= nums.length || nums[left] != target) {
+            return  -1;
+        }
+        return left;
+    }
+
+    static int binarySearchRightBoundaryUnitedVersion(int[] nums, int target) {
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        // [left, right] -> [left, mid - 1], [mid + 1, right]
+
+        while (left <= right) {
+
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] == target) {
+                left = mid + 1;
+            } else if (nums[mid] > target) {
+                right = mid - 1;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            }
+        }
+
+        if (nums[right] != target) {
+            return -1;
+        }
+
+        return right;
     }
 }
