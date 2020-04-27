@@ -1,4 +1,4 @@
-package leetcode.JzOffer;
+package leetcode.blade.point.offer;
 
 import java.util.HashSet;
 
