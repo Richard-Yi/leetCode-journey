@@ -1,5 +1,7 @@
 package leetcode.top.interview.question;
 
+import leetcode.common.ListNode;
+
 /**
  * @author Richard_Yi
  * @version 1.0 2020/4/28

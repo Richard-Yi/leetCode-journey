@@ -1,4 +1,4 @@
-package leetcode.self.study;
+package leetcode.self.study.binary;
 
 /**
  * @author Richard_Yi
