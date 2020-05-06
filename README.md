@@ -48,5 +48,24 @@
 
 ### 滑动窗口
 
+```java
+String s, String t;
 
+int left = 0, right = 0;
+
+while (right < s.size()) {
+    window.add(s[right]);
+    // TODO...
+    
+    right++;
+    
+    while(valid) {
+        // TODO...
+        window.remove(s.[left]);
+        left++;
+    }
+}
+```
+
+> 练习题：题03/438/76
 
