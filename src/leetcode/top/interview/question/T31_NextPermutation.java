@@ -11,8 +11,10 @@ import java.util.Arrays;
 public class T31_NextPermutation {
 
     public static void main(String[] args) {
-        int[] nums = {3, 2, 1};
-        Arrays.sort(nums, 1, 3);
+        int[] nums = {1, 1, 5};
+//        Arrays.sort(nums, 1, 3);
+//        System.out.println(Arrays.toString(nums));
+        nextPermutation(nums);
         System.out.println(Arrays.toString(nums));
     }
 
@@ -23,6 +25,42 @@ public class T31_NextPermutation {
 
     private static void nextPermutation(int[] nums) {
 
+        if (nums.length <= 1) {
+            return;
+        }
 
+        int p = nums.length - 2;
+        int n1 = -1;
+
+        while (p >= 0) {
+            if (nums[p] < nums[p + 1]) {
+                n1 = p;
+                break;
+            }
+            p--;
+        }
+
+        if (n1 == -1) {
+            Arrays.sort(nums);
+            return;
+        }
+
+        // 此时 p指在了 n1的位置上
+        int higher = -1;
+        int n2 = -1;
+        p++;
+        while (p < nums.length) {
+            if (higher == -1 || (nums[p] > nums[n1] && higher > nums[p])) {
+                higher = nums[p];
+                n2 = p;
+            }
+            p++;
+        }
+
+        int temp = nums[n1];
+        nums[n1] = nums[n2];
+        nums[n2] = temp;
+
+        Arrays.sort(nums, n1 + 1, nums.length);
     }
 }
