@@ -1,20 +1,52 @@
 
-> 图解图片来自于 [五分钟学算法](https://www.cxyxiaowu.com/)
+## 算法思维
 
-## day1
+### 回溯算法
 
-> 02 两数相加
+**回溯算法模板**
 
-![图解](https://blog-1257126549.cos.ap-guangzhou.myqcloud.com/blog/lchmg.gif)
+```java
+    void backTrack(路径, 选择列表) {
+        // 触发结束条件
+        if(stop condition) {
+            // do sth
+            return;
+        }
 
-链表、补位思想、进位思想
+        // 遍历选择列表
+        for 选择 in 选择列表 {
+            // 排序不合法选择
+            // 更新选择列表
+            // 做选择
+            路径.add(选择);
 
-> 03 找出数组中重复的数字
+            backTrack(路径, 选择列表);
+            // 撤销选择
+            路径.remove(选择);
+            // 选择列表更新
+        }
+    }
+```
 
-暴力或者hash表
+> 练习题：题22/17/39/46/78
 
-> 26 删除排序数组中的重复项
 
-[图解](https://blog-1257126549.cos.ap-guangzhou.myqcloud.com/blog/4y1ec.gif)
 
-（快、慢）双指针思想
+### 二分查找
+
+> 题目类型：经典二分查找、二分查找左边界、二分查找右边界
+
+- **二分查找要点：明确「搜索区间」这个概念**
+
+具体见`leetcode.self.study.binary.BinarySearch`类中的案例。
+
+
+
+### 双指针
+
+
+
+### 滑动窗口
+
+
+
