@@ -45,9 +45,11 @@ public class T438_FindAnagrams {
             if (toMatchMap.containsKey(c) && toMatchMap.get(c) == count) {
                 matched++;
             }
+            right++;
 
             while (need == matched) {
-                if (right - left + 1 == p.length()) {
+                // 这里因为是right++是先执行的，所以是right - left，而不是right - left + 1;
+                if (right - left == p.length()) {
                     res.add(left);
                 }
 
@@ -60,7 +62,7 @@ public class T438_FindAnagrams {
                 left++;
             }
 
-            right++;
+
         }
         return res;
     }
