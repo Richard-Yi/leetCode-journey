@@ -44,7 +44,6 @@ public class MinWindow {
             while (left <= right && met == toMeet) {
                 // 更新res
                 if (res[0] == -1 || right - left + 1 < res[0]) {
-                    // 初始化
                     res[0] = right - left + 1;
                     res[1] = left;
                     res[2] = right;
