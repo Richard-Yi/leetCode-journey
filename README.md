@@ -40,6 +40,8 @@
 
 具体见`leetcode.self.study.binary.BinarySearch`类中的案例。
 
+- **二分查找变题：搜索旋转排序数组**
+
 
 
 ### 双指针
