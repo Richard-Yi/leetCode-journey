@@ -18,10 +18,6 @@ public class T33_SearchRotateSortedArray {
 
     // 刚开始的思路是对的，但是没考虑到只需要做一次二分法
 
-    // 可以使用尾元素作为区分值，二分中点对应的值比尾元素小的话那就说明二分中点是在后面的区间，大的话就会是在前面的区间。
-    //
-    // 如果中点在后面的区间，那我们就要移动尾指针，如果是在前面的区间的话，我们就要移动首指针，其实就是逐步逼近后区间首元素的一个过程。
-
     private static int search2(int[] nums, int target) {
 
         if (nums == null || nums.length == 0) {
