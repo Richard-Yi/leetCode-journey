@@ -16,6 +16,14 @@ public class T509_Fibonacci {
         System.out.println(fib3(n));
     }
 
+    // 时间复杂度怎么算？子问题个数乘以解决一个子问题需要的时间。
+    //
+    // 子问题个数，即图中节点的总数，
+    //
+    // 由于本算法不存在冗余计算，子问题就是 f(1), f(2), f(3) ... f(20)，
+    //
+    // 数量和输入规模 n = 20 成正比，所以子问题个数为 O(n)。
+
     private static int fib(int n) {
         if (n == 0 || n == 1) {
             return n;
