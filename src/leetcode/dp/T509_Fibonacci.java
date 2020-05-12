@@ -10,10 +10,12 @@ import java.util.Map;
 public class T509_Fibonacci {
 
     public static void main(String[] args) {
-        int n = 5;
+        int n = 0;
         System.out.println(fib(n));
         System.out.println(fib2(n));
         System.out.println(fib3(n));
+        System.out.println(fib4(n));
+        System.out.println(fib5(n));
     }
 
     // 时间复杂度怎么算？子问题个数乘以解决一个子问题需要的时间。
@@ -73,5 +75,32 @@ public class T509_Fibonacci {
         }
 
         return help(map, N - 1) + help(map, N - 2);
+    }
+
+    private static int fib4(int N) {
+        Map<Integer, Integer> map = new HashMap<>(N);
+
+        map.put(1, 1);
+        map.put(0, 0);
+        for (int i = 2; i <= N; i++) {
+            int ret = map.get(i - 1) + map.get(i - 2);
+            map.put(i, ret);
+        }
+        return map.get(N);
+    }
+
+    private static int fib5(int N) {
+
+        if (N < 2) {
+            return N;
+        }
+
+        int prev = 0, curr = 1;
+        for (int i = 2; i <= N; i++) {
+            int temp = prev;
+            prev = curr;
+            curr = prev + temp;
+        }
+        return curr;
     }
 }
