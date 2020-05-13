@@ -35,6 +35,8 @@ public class T509_Fibonacci {
 
     private static Map<Integer, Integer> map = new HashMap<>();
 
+    // 带备忘录的解法
+
     private static int fib2(int N) {
         if (N == 0 || N == 1) {
             return N;
@@ -55,6 +57,8 @@ public class T509_Fibonacci {
         }
         return a + b;
     }
+
+    // 带备忘录的解法
 
     private static int fib3(int N) {
         if (N < 1) {
@@ -77,6 +81,8 @@ public class T509_Fibonacci {
         return help(map, N - 1) + help(map, N - 2);
     }
 
+    // dp table的解法，自底向上
+
     private static int fib4(int N) {
         Map<Integer, Integer> map = new HashMap<>(N);
 
@@ -88,6 +94,8 @@ public class T509_Fibonacci {
         }
         return map.get(N);
     }
+
+    // dp table的解法再优化
 
     private static int fib5(int N) {
 
