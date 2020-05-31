@@ -9,7 +9,8 @@ import java.util.Arrays;
 public class T581_FindUnsortedSubarray {
 
     public static void main(String[] args) {
-        int[] nums = {2, 6, 4, 8, 10, 9, 15};
+//        int[] nums = {2, 6, 4, 8, 10, 9, 15};
+        int[] nums = {3, 2, 1};
         System.out.println(findUnsortedSubarray(nums));
         System.out.println(findUnsortedSubarray2(nums));
     }
@@ -70,12 +71,15 @@ public class T581_FindUnsortedSubarray {
                 break;
             }
         }
-        int right = nums.length;
+        int right = nums.length - 1;
         for (int i = nums.length - 1; i >= 0; i--) {
             if (nums[i] < max) {
                 right = i;
                 break;
             }
+        }
+        if (min == Integer.MAX_VALUE && max == Integer.MIN_VALUE) {
+            return 0;
         }
         return (right - left) >= 0 ? (right - left + 1) : 0;
     }
