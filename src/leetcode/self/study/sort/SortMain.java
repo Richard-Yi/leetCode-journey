@@ -18,7 +18,8 @@ public class SortMain {
 //        SortMethod.insertionSort(nums);
 //        SortMethod.selectionSort(nums);
 //        SortMethod.mergeSort(nums);
-        SortMethod.quickSort(nums);
+//        SortMethod.quickSort(nums);
+        SortMethod.countSort(nums);
         System.out.println(Arrays.toString(nums));
     }
 

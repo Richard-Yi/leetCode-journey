@@ -215,4 +215,50 @@ public class SortMethod {
         nums[i] = nums[j];
         nums[j] = temp;
     }
+
+    /**
+     * 适合内存不够，采用文件（桶）进行排序
+     */
+    public static void bucketSort() {
+
+    }
+
+    /**
+     * 适合排序范围小，内存大的场景
+     * @param nums
+     */
+    public static void countSort(int[] nums) {
+        // 确认范围
+        int min = nums[0];
+        int max = nums[0];
+        for (int num : nums) {
+            min = Math.min(min, num);
+            max = Math.max(max, num);
+        }
+        // count
+        int len = max - min + 1;
+        int[] count = new int[len];
+        for (int num : nums) {
+            count[num - min] = count[num - min] + 1;
+        }
+        // 累加
+        int m = 0;
+        for (int i = 0; i < count.length; i++) {
+            m += count[i];
+            count[i] = m;
+        }
+        // sort
+        int[] tmp = new int[nums.length];
+        for (int i = nums.length - 1; i >= 0; i--) {
+            int idx = nums[i] - min;
+            if (count[idx] > 0) {
+                tmp[count[idx] - 1] = idx;
+                count[idx] = count[idx] - 1;
+            }
+        }
+        // copy
+        for (int i = 0; i < tmp.length; i++) {
+            nums[i] = tmp[i];
+        }
+    }
 }
