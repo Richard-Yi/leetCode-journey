@@ -23,14 +23,51 @@ public class LongestCommonPrefix_14 {
 
     public static void main(String[] args) {
 //        String[] array = new String[]{"flower", "flow", "flight"};
-        String[] array = new String[]{"c","acc","ccc"};
+//        String[] array = new String[]{"c","acc","ccc"};
 //        String[] array = new String[]{"dog", "racecar", "car"};
+        String[] array = new String[]{"aaa","aa","aaa"};
         System.out.println(longestCommonPrefix(array));
+        System.out.println(longestCommonPrefix2(array));
     }
 
     public static String longestCommonPrefix2(String[] array) {
-        // TODO 更方便的方法
-        return "";
+        if (array.length == 0) {
+            return "";
+        }
+
+        String str = array[0];
+        if (str.length() < 1) {
+            return "";
+        }
+
+        int end = str.length();
+        for (int i = 1; i < array.length; i++) {
+            String nowStr = array[i];
+            if (nowStr.length() == 0) {
+                return "";
+            }
+
+            int tempEnd = 0;
+            int l = Math.min(str.length(), nowStr.length());
+            for (int j = 0; j < l; j++) {
+                if (str.charAt(j) == nowStr.charAt(j)) {
+                    tempEnd++;
+                } else {
+                    break;
+                }
+
+            }
+            end = Math.min(tempEnd, end);
+            if (end == 0) {
+                return "";
+            }
+
+            if (nowStr.length() < str.length()) {
+                str = nowStr;
+            }
+        }
+
+        return str.substring(0, end);
     }
 
     public static String longestCommonPrefix(String[] array) {
