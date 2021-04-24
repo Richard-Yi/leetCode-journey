@@ -40,10 +40,10 @@ public class TwoArraysIntersection_350 {
         int[] nums2 = new int[]{1,4,8,9};
 
 //        System.out.println(Arrays.toString(twoArraysIntersectionUsingMap(nums1, nums2)));
-        System.out.println(Arrays.toString(twoArraysIntersectionUsingDp(nums1, nums2)));
+        System.out.println(Arrays.toString(twoArraysIntersectionUsingDoublePoint(nums1, nums2)));
     }
 
-    public static int[] twoArraysIntersectionUsingDp(int[] nums1, int[] nums2) {
+    public static int[] twoArraysIntersectionUsingDoublePoint(int[] nums1, int[] nums2) {
         Arrays.sort(nums1);
         Arrays.sort(nums2);
 //        System.out.println(Arrays.toString(nums1));
