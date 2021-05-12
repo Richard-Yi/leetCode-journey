@@ -74,12 +74,12 @@ public class ReverseList3_25 {
     }
 
     public static boolean remainStepsHigherThanK(ListNode head, int k) {
-        ListNode cur = head;
         for (int i = 0; i < k; i++) {
-            if (cur == null) {
+            // 先判空
+            if (head == null) {
                 return false;
             }
-            cur = cur.next;
+            head = head.next;
         }
         return true;
     }
