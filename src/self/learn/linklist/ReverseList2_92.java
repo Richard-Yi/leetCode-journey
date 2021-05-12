@@ -25,11 +25,13 @@ public class ReverseList2_92 {
         ListNode cur = dummy.next;
         // 头插法 left - 1 很关键
         for (int step = 0; step < left - 1; step++) {
+            // [0, left - 1)
             prev = prev.next;
             cur = cur.next;
         }
 
-        for (int step = left; step < right; step++) {
+        for (int step = left - 1; step < right - 1; step++) {
+            // [left - 1, right - 1)
             ListNode removed = cur.next;
 
             cur.next = cur.next.next;
