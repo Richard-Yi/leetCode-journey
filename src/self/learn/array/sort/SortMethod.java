@@ -1,4 +1,4 @@
-package leetcode.self.study.sort;
+package self.learn.array.sort;
 
 /**
  * @author Richard_yyf

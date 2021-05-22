@@ -1,5 +1,7 @@
 package leetcode.self.study.sort;
 
+import self.learn.array.sort.SortMethod;
+
 /**
  * @author Richard_yyf
  * @version 1.0 2020/7/4

@@ -1,4 +1,4 @@
-package leetcode.self.study.sort;
+package self.learn.array.sort;
 
 import java.util.Arrays;
 
