@@ -1,4 +1,4 @@
-package self.learn.array;
+package self.learn.array.binarysearch;
 
 import java.util.Arrays;
 
