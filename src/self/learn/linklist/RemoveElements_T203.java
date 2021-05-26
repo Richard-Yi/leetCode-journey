@@ -3,6 +3,8 @@ package self.learn.linklist;
 import leetcode.common.ListNode;
 
 /**
+ * - tag: 链表
+ * - 难度：easy
  * @author Richard_yyf
  * @version 1.0 2021/5/26
  */
