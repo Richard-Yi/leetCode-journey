@@ -1,4 +1,4 @@
-package self.learn.array;
+package self.learn.array.double_point;
 
 /**
  * 11. 盛最多水的容器
