@@ -1,6 +1,9 @@
 package self.learn.array;
 
 /**
+ * - tag: 数组
+ * - 思路很重要
+ * - 难度：hard
  * @author Richard_yyf
  * @version 1.0 2021/5/29
  */
