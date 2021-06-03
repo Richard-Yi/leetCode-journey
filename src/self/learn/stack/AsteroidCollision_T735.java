@@ -23,35 +23,30 @@ public class AsteroidCollision_T735 {
     public static int[] asteroidCollision(int[] asteroids) {
         Deque<Integer> stack = new ArrayDeque<>();
         for (int i = asteroids.length - 1; i >= 0; i--) {
-            if (stack.peek() == null) {
+            if (stack.isEmpty() || stack.peek() > 0 || asteroids[i] < 0) {
+                // stack 为空，栈顶元素 > 0 ， 当前元素小于0
                 stack.push(asteroids[i]);
                 continue;
             }
 
-            if (stack.peek() < 0) {
-                if (asteroids[i] < 0) {
-                    stack.push(asteroids[i]);
-                    continue;
-                }
-                int temp = asteroids[i] + stack.peek();
-                while (temp > 0) {
+            int temp = asteroids[i] + stack.peek();
+            while (temp > 0) {
 
-                    stack.pop();
-                    if (stack.peek() == null || stack.peek() > 0) {
-                        break;
-                    }
-                    temp = asteroids[i] + stack.peek();
+                stack.pop();
+                if (stack.peek() == null || stack.peek() > 0) {
+                    break;
+                }
+                temp = asteroids[i] + stack.peek();
 
-                }
-                if (temp == 0) {
-                    stack.pop();
-                } else if (temp > 0){
-                    stack.push(asteroids[i]);
-                }
-            } else {
+            }
+            if (temp == 0) {
+                stack.pop();
+            } else if (temp > 0){
                 stack.push(asteroids[i]);
             }
+            // temp < 0就啥也不用干，保持原样
         }
+
         int[] res = new int[stack.size()];
         for (int i = 0; i < res.length; i++) {
             res[i] = stack.pop();
