@@ -1,13 +1,28 @@
 package self.learn.heap;
 
+import java.util.PriorityQueue;
+
 /**
  * 难度：medium
- * tag: 堆排序，最大堆
+ * tag: 堆排序，最大堆 最小堆
  * 总结：topK 问题，都用最大堆
  * @author Richard_yyf
  * @version 1.0 2021/6/8
  */
 public class FindKthLargest_T215 {
+
+    public int findKthLargest_V2(int[] nums, int k) {
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        for (int x : nums) {
+            if (heap.size() < k || x >= heap.peek()) {
+                heap.offer(x);
+            }
+            if (heap.size() > k) {
+                heap.poll();
+            }
+        }
+        return heap.peek();
+    }
 
     public int findKthLargest(int[] nums, int k) {
         int[] heap = new int[nums.length];
