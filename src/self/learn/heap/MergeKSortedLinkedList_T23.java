@@ -18,7 +18,7 @@ public class MergeKSortedLinkedList_T23 {
     }
 
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists.length == 0) {
+        if (lists == null || lists.length == 0) {
             return null;
         }
         // new java.util.PriorityQueue<>() 时，如果capacity为0，会报错
