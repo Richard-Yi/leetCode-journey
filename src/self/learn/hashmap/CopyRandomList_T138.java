@@ -23,7 +23,7 @@ public class CopyRandomList_T138 {
             }
             copy.next = cur.next == null ? null : map.get(cur.next);
 
-            if (dumpHead.next == null) {
+            if (newCur == null) {
                 dumpHead.next = copy;
                 newCur = copy;
             } else {
