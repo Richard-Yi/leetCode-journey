@@ -21,27 +21,29 @@ public class MergeKSortedLinkedList_T23 {
         if (lists == null || lists.length == 0) {
             return null;
         }
-        // new java.util.PriorityQueue<>() 时，如果capacity为0，会报错
+
         java.util.PriorityQueue<ListNode> heap = new java.util.PriorityQueue<>(lists.length, Comparator.comparingInt(o -> o.val));
-        for (ListNode list : lists) {
-            // 不能offer null，会报错
-            heap.offer(list);
+        for (ListNode node : lists) {
+            if (node == null) {
+                continue;
+            }
+            heap.offer(node);
         }
-        ListNode head = new ListNode(0);
+
+        ListNode head = null;
         ListNode cur = null;
         while (!heap.isEmpty()) {
-            ListNode min = heap.poll();
-            if (cur == null) {
-                cur = min;
-                head.next = cur;
+            ListNode move = heap.poll();
+            if (head == null) {
+                head = move;
             } else {
-                cur.next = min;
-                cur = min;
+                cur.next = move;
             }
-            if (min.next != null) {
-                heap.offer(min.next);
+            cur = move;
+            if (move.next != null) {
+                heap.offer(move.next);
             }
         }
-        return head.next;
+        return head;
     }
 }
