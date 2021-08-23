@@ -14,7 +14,7 @@ public class T31_NextPermutation {
         int[] nums = {1, 1, 5};
 //        Arrays.sort(nums, 1, 3);
 //        System.out.println(Arrays.toString(nums));
-        nextPermutation(nums);
+        new T31_NextPermutation().nextPermutation(nums);
         System.out.println(Arrays.toString(nums));
     }
 
@@ -23,44 +23,42 @@ public class T31_NextPermutation {
     // 2. 从那个高位小数后面开始找最接近它且大于它的数
     // 3. 两者交换位置，并且将大数后面的数升序排列
 
-    private static void nextPermutation(int[] nums) {
-
-        if (nums.length <= 1) {
+    public void nextPermutation(int[] nums) {
+        int n = nums.length;
+        if (n <= 1) {
             return;
         }
 
-        int p = nums.length - 2;
-        int n1 = -1;
-
-        while (p >= 0) {
-            if (nums[p] < nums[p + 1]) {
-                n1 = p;
-                break;
-            }
-            p--;
+        int pivot = n - 2;
+        while (pivot >= 0 && nums[pivot] >= nums[pivot + 1]) {
+            pivot--;
         }
 
-        if (n1 == -1) {
-            Arrays.sort(nums);
+        if (pivot == -1) {
+            reverse(nums, 0, n - 1);
             return;
         }
 
-        // 此时 p指在了 n1的位置上
-        int higher = -1;
-        int n2 = -1;
-        p++;
-        while (p < nums.length) {
-            if (higher == -1 || (nums[p] > nums[n1] && higher > nums[p])) {
-                higher = nums[p];
-                n2 = p;
-            }
-            p++;
+        int lg = pivot + 1;
+        while (lg < n && nums[lg] > nums[pivot]) {
+            lg++;
         }
 
-        int temp = nums[n1];
-        nums[n1] = nums[n2];
-        nums[n2] = temp;
+        swap(nums, pivot, --lg);
+        reverse(nums, pivot + 1, n - 1);
+    }
 
-        Arrays.sort(nums, n1 + 1, nums.length);
+    private void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
+    }
+
+    private void reverse(int[] nums, int i, int j) {
+        while (i < j) {
+            swap(nums, i, j);
+            i++;
+            j--;
+        }
     }
 }
