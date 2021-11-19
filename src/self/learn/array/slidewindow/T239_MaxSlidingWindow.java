@@ -17,6 +17,32 @@ public class T239_MaxSlidingWindow {
         System.out.println(Arrays.toString(result));
     }
 
+    //[1, 3, -1, -3, 5, 3, 6, 7]
+    //i = 0, queue.addLast,[1]
+    //i = 0, current max: 1
+    //i = 1, queue.removeLast, ret:[]
+    //i = 1, queue.addLast, ret:[3]
+    //i = 1, current max:3
+    //i = 2, queue.addLast, ret:[3, -1]
+    //i = 2, current max:3
+    //i = 3, queue.addLast, ret:[3, -1, -3]
+    //i = 3, current max:3
+    //i = 4, queue.removeLast, ret:[3, -1]
+    //i = 4, queue.removeLast, ret:[3]
+    //i = 4, queue.removeLast, ret:[]
+    //i = 4, queue.addLast, ret:[5]
+    //i = 4, current max:5
+    //i = 5, queue.addLast, ret:[5, 3]
+    //i = 5, current max:5
+    //i = 6, queue.removeLast, ret:[5]
+    //i = 6, queue.removeLast, ret:[]
+    //i = 6, queue.addLast, ret:[6]
+    //i = 6, current max:6
+    //i = 7, queue.removeLast, ret:[]
+    //i = 7, queue.addLast, ret:[7]
+    //i = 7, current max:7
+    //[3, 3, 5, 5, 6, 7]
+
     public int[] maxSlidingWindow(int[] nums, int k) {
         if (nums == null || nums.length <= 1) {
             return nums;
