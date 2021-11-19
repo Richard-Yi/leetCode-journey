@@ -1,7 +1,9 @@
 package self.learn.array.slidewindow;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
+import java.util.LinkedList;
 
 /**
  * @author Richard_yyf
@@ -9,45 +11,39 @@ import java.util.Deque;
  */
 public class T239_MaxSlidingWindow {
 
-    public int[] maxSlidingWindow(int[] nums, int k) {
-        MonotonicQueue queue = new MonotonicQueue();
-        int[] res = new int[nums.length - k + 1];
-        for (int i = 0; i < nums.length; i++) {
-            if (i < k) {
-                queue.push(nums[i]);
-                if (i == k - 1) {
-                    res[i - k + 1] = queue.max();
-                }
-            } else {
-                queue.pop(nums[i - k]);
-                queue.push(nums[i]);
-                res[i - k + 1] = queue.max();
-            }
-        }
-        return res;
+    public static void main(String[] args) {
+        int[] nums = new int[]{1,3,-1,-3,5,3,6,7};
+        int[] result = new T239_MaxSlidingWindow().maxSlidingWindow(nums, 3);
+        System.out.println(Arrays.toString(result));
     }
 
-    static class MonotonicQueue {
-        private Deque<Integer> deque = new ArrayDeque<>();
-        void push(int n) {
-            while (!deque.isEmpty() && deque.peekLast() < n) {
-                // 要保证队列左边是最大的
-                deque.pollLast();
-            }
-            // 往队列头添加
-            deque.offerFirst(n);
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        if (nums == null || nums.length <= 1) {
+            return nums;
         }
-        void pop(int n) {
-            if (!deque.isEmpty() && deque.peekLast() == n) {
-                deque.pollLast();
+        System.out.println(Arrays.toString(nums));
+        int[] ret = new int[nums.length - k + 1];
+        LinkedList<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < nums.length; i++) {
+            while (!queue.isEmpty() && nums[i] >= nums[queue.peekLast()]) {
+                queue.removeLast();
+                System.out.println(String.format("i = %s, queue.removeLast, ret:%s", i, queue));
             }
-            while (!deque.isEmpty() && deque.peekLast() < deque.peekFirst()) {
-                deque.pollLast();
+
+            queue.addLast(i);
+            System.out.println(String.format("i = %s, queue.addLast, ret:%s", i, queue));
+            if (queue.peek() + k <= i) {
+                queue.remove();
+                System.out.println(String.format("i = %s, queue.remove, ret:%s", i, queue));
+            }
+
+            System.out.println(String.format("i = %s, current max:%s", i, queue.peek()));
+            if (i + 1 >= k) {
+                ret[i - k + 1] = nums[queue.peek()];
             }
         }
-        int max() {
-            return deque.peekLast();
-        }
+
+        return ret;
     }
 
 }
