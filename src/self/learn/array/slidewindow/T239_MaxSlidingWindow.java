@@ -12,8 +12,12 @@ import java.util.LinkedList;
 public class T239_MaxSlidingWindow {
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1,3,-1,-3,5,3,6,7};
-        int[] result = new T239_MaxSlidingWindow().maxSlidingWindow(nums, 3);
+//        int[] nums = new int[]{1,3,-1,-3,5,3,6,7};
+//        int k = 3;
+        int[] nums = new int[]{7, 2, 4};
+        int k = 2;
+//        int[] result = new T239_MaxSlidingWindow().maxSlidingWindow(nums, k);
+        int[] result = new T239_MaxSlidingWindow().maxSlidingWindowMyVersion(nums, k);
         System.out.println(Arrays.toString(result));
     }
 
@@ -72,4 +76,31 @@ public class T239_MaxSlidingWindow {
         return ret;
     }
 
+    public int[] maxSlidingWindowMyVersion(int[] nums, int k) {
+        if (nums == null || nums.length == 1) {
+            return nums;
+        }
+
+        Deque<Integer> queue = new ArrayDeque<>();
+        int[] ret = new int[nums.length - k + 1];
+
+        for (int i = 0; i < nums.length; i++) {
+            // delete before
+            while (!queue.isEmpty() && nums[i] > nums[queue.peekLast()]) {
+                queue.removeLast();
+            }
+            // add window
+            queue.addLast(i);
+            // delete ele out of window
+            if (i - queue.peek() >= k) {
+                queue.removeFirst();
+            }
+            // result add
+            if (i >= k - 1) {
+                ret[i - k + 1] = nums[queue.peek()];
+            }
+        }
+
+        return ret;
+    }
 }
