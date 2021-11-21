@@ -169,7 +169,7 @@ public class SortMethod {
             return;
         }
 
-        int q = partition2(nums, p, r);
+        int q = partition(nums, p, r);
         quickSortInternal(nums, p, q - 1);
         quickSortInternal(nums, q + 1, r);
     }
@@ -184,29 +184,6 @@ public class SortMethod {
             }
         }
         swap(nums, i, r);
-        return i;
-    }
-
-    public static int partition2(int[] a, int p, int r) {
-        int pivot = a[r];
-        int i = p;
-        for(int j = p; j < r; ++j) {
-            if (a[j] < pivot) {
-                if (i == j) {
-                    ++i;
-                } else {
-                    int tmp = a[i];
-                    a[i++] = a[j];
-                    a[j] = tmp;
-                }
-            }
-        }
-
-        int tmp = a[i];
-        a[i] = a[r];
-        a[r] = tmp;
-
-        System.out.println("i=" + i);
         return i;
     }
 
